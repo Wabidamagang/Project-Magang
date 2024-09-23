@@ -1,0 +1,46 @@
+@extends('admin.layout.appadmin')
+@section('content')
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Mengedit Data Kelas</h1>
+
+    <!-- Form -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <form action="{{url('admin/kelas/update', $kelas->id)}}" method="POST" class="space-y-4" enctype="multipart/form-data">
+                @csrf
+
+                <!-- Name -->
+                <div class="mb-3">
+                    <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                    <input type="text" id="name" name="name" 
+                           class="form-control" 
+                           value="{{ $kelas->name }}">
+                </div>
+
+                <!-- Jumlah -->
+                <div class="mb-3">
+                    <label for="jumlah" class="block text-gray-700 text-sm font-bold mb-2">Jumlah</label>
+                    <input type="text" id="jumlah" name="jumlah" 
+                           class="form-control" 
+                           value="{{ $kelas->jumlah }}">
+                </div>
+
+                <!-- Tombol Submit -->
+                <div class="flex justify-end">
+                    <button type="submit" 
+                            class="btn btn-primary">
+                        Update
+                    </button>
+                    <a class="btn btn-secondary" href="{{ url('admin/kelas') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+
+@endsection
