@@ -27,7 +27,7 @@ class Kelas extends Model
 
     public function dosen()
     {
-        return $this->belongsToMany(Dosen::class, 'kelas_dosen');
+        return $this->belongsToMany(Dosen::class, 'kelas_dosen','kelas_id','dosen_id');
     }
 
     public function mahasiswaPivot()

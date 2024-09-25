@@ -27,12 +27,24 @@ class Mahasiswa extends Model
 
     public function user()
     {
-        return $this->belongsTo(Mahasiswa::class);
+        return $this->belongsTo(User::class);
     }
 
     public function kelasPivot()
     {
         return $this->belongsToMany(Kelas::class, 'kelas_mahasiswa');
     }
+
+    protected static function boot()
+{
+    parent::boot();
+
+    static::deleting(function ($mahasiswa) {
+        // Menghapus user terkait saat mahasiswa dihapus
+        if ($mahasiswa->user) {
+            $mahasiswa->user->delete();
+        }
+    });
+}
 
 }

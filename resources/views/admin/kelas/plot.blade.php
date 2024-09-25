@@ -5,7 +5,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Create New Entry</h1>
+    <h1 class="h3 mb-2 text-gray-800">Plot {{ $kelas->name }}</h1>
 
     <!-- Form -->
     <div class="card shadow mb-4">

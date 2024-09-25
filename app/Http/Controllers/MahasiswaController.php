@@ -173,11 +173,11 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::findOrFail($id);
         $user = auth()->user();
 
-        // Mengecek apakah user yang login adalah dosen wali dari mahasiswa tersebut atau admin
+        // Mengecek apakah user yang login adalah dosen wali dari mahasiswa tersebut atau tidak
         if ($user->dosen_id !== $mahasiswa->kelas->dosen_wali_id && !$user->is_admin) {
             return redirect()->route('mahasiswa.index')->withErrors('Akses ditolak!');
     }
-
+    
         // Menghapus data mahasiswa
         $mahasiswa->delete();
 

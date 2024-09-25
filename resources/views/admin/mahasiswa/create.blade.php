@@ -13,16 +13,6 @@
             <form action="{{url('admin/mahasiswa/store')}}" method="POST" class="space-y-4" enctype="multipart/form-data">
                 @csrf
 
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
-
                 <div class="form-group">
                     <label for="kelas_id">Kelas:</label>
                     <select name="kelas_id" id="kelas_id" class="form-control">

@@ -32,8 +32,14 @@
                             <td>{{ $rq->mahasiswa->name }}</td>
                             <td>{{ $rq->keterangan }}</td>
                             <td>
-                            <a href="{{ route('request.approve', $rq->id) }}" class="btn btn-success">Setuju</a>
-                            <a href="{{ route('request.reject', $rq->id) }}" class="btn btn-danger">Tolak</a>
+                            <form action="{{ route('request.approve', $rq->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-success">Setuju</button>
+                            </form>
+                            <form action="{{ route('request.reject', $rq->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Tolak</button>
+                            </form>
                             </td>
                         </tr>
                         @endforeach

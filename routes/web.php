@@ -63,10 +63,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['peran:dosen'])->group(function () {
-  Route::post('request/store', [RequestController::class, 'store'])->name('request.store');
   Route::get('/request', [RequestController::class, 'index'])->name('request.index');
-  Route::get('/request/approve/{id}', [RequestController::class, 'approve'])->name('request.approve');
-  Route::get('/request/reject/{id}', [RequestController::class, 'reject'])->name('request.reject');
+  Route::post('/request/store', [RequestController::class, 'store'])->name('request.store');
+  Route::post('/request/{id}/approve', [RequestController::class, 'approve'])->name('request.approve');
+  Route::post('/request/{id}/reject', [RequestController::class, 'reject'])->name('request.reject');
 
   //Mahasiswa
   Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
@@ -79,9 +79,8 @@ Route::middleware(['peran:dosen'])->group(function () {
 });
 
 Route::middleware(['peran:kaprodi-dosen-mahasiswa'])->group(function () {
-  // View only route for Mahasiswa list
   Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
-  Route::post('request/store', [RequestController::class, 'store'])->name('request.store');
+  Route::post('/request/store', [RequestController::class, 'store'])->name('request.store');
   Route::get('/request', [RequestController::class, 'index'])->name('request.index');
   Route::get('/mahasiswa/edit/{id}', [MahasiswaController::class, 'edit']);
   Route::post('/mahasiswa/update/{id}', [MahasiswaController::class, 'update']);

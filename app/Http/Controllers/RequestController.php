@@ -41,10 +41,10 @@ class RequestController extends Controller
         $mahasiswa = Mahasiswa::findOrFail($request->mahasiswa_id);
         $dosen = auth()->user()->dosen;
 
-        // Memeriksa apakah dosen yang login adalah dosen wali dari kelas mahasiswa tersebut
-        if ($mahasiswa->kelas->dosen_wali_id !== $dosen->id) {
-        return redirect()->back()->withErrors('Anda tidak memiliki izin untuk menyetujui permintaan dari mahasiswa ini.');
-    }
+        // Memeriksa apakah dosen yang login mengajar di kelas mahasiswa tersebut
+        if ($mahasiswa->kelas_id != $dosen->kelas_id) {
+            return redirect()->back()->withErrors('Anda tidak memiliki izin untuk menyetujui permintaan dari mahasiswa ini.');
+        }
         
         // Update izin edit oleh mahasiswa
         $mahasiswa->update(['edit' => 1]);
@@ -62,10 +62,10 @@ class RequestController extends Controller
         $mahasiswa = Mahasiswa::findOrFail($request->mahasiswa_id);
         $dosen = auth()->user()->dosen;
 
-        // Memeriksa apakah dosen yang login adalah dosen wali dari kelas mahasiswa tersebut
-        if ($mahasiswa->kelas->dosen_wali_id !== $dosen->id) {
-        return redirect()->back()->withErrors('Anda tidak memiliki izin untuk menolak permintaan dari mahasiswa ini.');
-    }
+        // Memeriksa apakah dosen yang login mengajar di kelas mahasiswa tersebut
+        if ($mahasiswa->kelas_id != $dosen->kelas_id) {
+            return redirect()->back()->withErrors('Anda tidak memiliki izin untuk menyetujui permintaan dari mahasiswa ini.');
+        } 
 
         // Update status mahasiswa menjadi ditolak
         $mahasiswa->update(['edit' => -1]);
